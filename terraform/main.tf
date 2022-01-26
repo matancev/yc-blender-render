@@ -1,8 +1,3 @@
-data "external" "oslogin_key" {
-  program = ["bash", "${path.module}/scripts/oslogin.sh",
-    pathexpand(var.ssh_public_key_path), local.instance_user]
-}
-
 resource "yandex_vpc_network" "blender_network" {}
 
 resource "yandex_vpc_subnet" "blender_subnet" {
@@ -17,7 +12,7 @@ resource "yandex_compute_instance" "blender_render_instance" {
   zone        = var.zone
 
   metadata = {
-    ssh-keys = data.external.oslogin_key.result.key
+    ssh-keys = "${local.instance_user}:${file(var.ssh_public_key_path)}"
   }
 
   resources {
