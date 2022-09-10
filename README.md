@@ -17,7 +17,7 @@ YC_TOKEN=$(yc iam create-token) terrafrom apply -var="folder_id=${FOLDER_ID}"
 ```
 
 > **Caution!**
-> By default `id_rsa` and `id_rsa.pub` from your ~/.ssh are used to configure ssh access to instance. 
+> By default `id_rsa` and `id_rsa.pub` from your ~/.ssh are used to configure ssh access to instance and run provision scripts. 
 > You can override paths with `ssh_public_key_path` and `ssh_private_key_path` variables.
 
 After successful completion of the command, you will see running compute instance in your cloud folder.
